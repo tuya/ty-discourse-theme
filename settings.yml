@@ -1,20 +1,25 @@
 color_definitions:
   accent_color:
     type: color
-    default: "#00B2E3"
-    description: "Main brand accent (links, active nav, highlights)."
+    default: "#172D72"
+    description: "Main brand accent (links, active nav, highlights) — tuyaopen.ai navy."
   banner_gradient_start:
     type: color
-    default: "#7FD9F5"
+    default: "#10A6FA"
     description: "Left side of the welcome banner gradient."
   banner_gradient_end:
     type: color
-    default: "#00B2E3"
+    default: "#172D72"
     description: "Right side of the welcome banner gradient."
   active_pill_color:
     type: color
-    default: "#00B2E3"
+    default: "#172D72"
     description: "Background of the active navigation pill (Latest/Top)."
+
+header_logo_url:
+  type: string
+  default: "https://tuyaopen.ai/img/home/tuyaopen-logo-simple-dark.png"
+  description: "Header logo image (bundled tuyaopen.ai logo by default; swap for any URL or upload)."
 
 welcome_banner_enabled:
   type: bool
@@ -31,8 +36,8 @@ welcome_banner_search_enabled:
 
 custom_nav_links:
   type: string
-  default: '[{"label":"Home","url":"https://developer.tuya.com/","target":"_blank"},{"label":"Docs","url":"https://developer.tuya.com/en/docs/iot","target":"_blank"},{"label":"GitHub","url":"https://github.com/tuya/tuyaopen","target":"_blank"},{"label":"Forum","url":"/","active_paths":["/","/latest","/top","/categories"],"active":true}]'
-  description: "JSON array of menu bar items: label, url, target (_blank optional), active (bool), active_paths (array of path prefixes)."
+  default: '[{"label":"Products","url":"","items":[{"label":"TuyaOpen SDK","description":"Open-source full-stack AIoT OS","url":"https://github.com/tuya/TuyaOpen","target":"_blank"},{"label":"TuyaOpen on Arduino","description":"Arduino library for rapid prototyping","url":"/docs/hardware/tuya-t5/develop-with-Arduino/Quick_start"},{"label":"TuyaOpenClaw","description":"AI hardware companion agent","url":"/duckyclaw"},{"label":"Tuya T5","description":"Flagship Wi-Fi & BT AI chip, built for TuyaOpen","url":"/t5-tuyaopen"},{"label":"ESP32","description":"Full Espressif platform support","url":"/docs/hardware/espressif/overview-esp32"},{"label":"Linux / Raspberry Pi","description":"Run TuyaOpen on Raspberry Pi & Linux","url":"/docs/hardware/Linux/raspberry-pi/Examples/raspberry-pi"},{"label":"TuyaOpen IDE","description":"AI coding-agent extension for TuyaOpen development","url":"/tuyaopen-ide"},{"label":"TyuTools GUI/CLI","description":"Universal serial & flashing toolkit","url":"/tyutool"},{"label":"WebTool","description":"Browser-based serial & flashing","url":"/web-serial"},{"label":"License Key","description":"Per-device Tuya Cloud & AI authorization","url":"/pricing"}]},{"label":"Docs","url":"","items":[{"label":"TuyaOpen SDK","url":"/docs/about-tuyaopen"},{"label":"Hardware","url":"/docs/hardware"},{"label":"Cloud & AI","url":"/docs/cloud/overview"},{"label":"TuyaOpenClaw","url":"/docs/duckyclaw/ducky-quick-start-T5AI"},{"label":"Tyutool","url":"/docs/tyutool"}]},{"label":"Learn","url":"/learn"},{"label":"Forums","url":"https://forum-tuyaopen.discourse.group/","target":"_blank","active":true,"active_paths":["/","/latest","/top","/categories"]},{"label":"Ecosystem","url":"","items":[{"label":"Projects","url":"/learn?cat=community"},{"label":"Dev Boards","url":"/dev-boards"},{"label":"Blog","url":"/blog"},{"label":"Event Registration","url":"https://images.tuyacn.com/rms-static/fe11d250-54e9-11f1-8d53-258e63d3fe0e-1779349939189.html?tyName=event-registration.html","target":"_blank"}]},{"label":"About Us","url":"","items":[{"label":"About","url":"/about"},{"label":"Mission","url":"/mission"},{"label":"Partner with Us","url":"/partners"}]}]'
+  description: "JSON menu tree mirroring tuyaopen.ai. Item fields: label, url (relative paths resolve to tuyaopen.ai), target (_blank), description, items (dropdown children)."
 hide_header_icons:
   type: bool
   default: true

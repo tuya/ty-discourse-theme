@@ -6,6 +6,7 @@ en:
       banner_gradient_start: "Banner gradient start"
       banner_gradient_end: "Banner gradient end"
       active_pill_color: "Active nav pill color"
+      header_logo_url: "Header logo image URL"
       welcome_banner_enabled: "Show welcome banner"
       welcome_banner_title: "Welcome banner title"
       welcome_banner_search_enabled: "Show search box in banner"
