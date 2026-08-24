@@ -1,0 +1,15 @@
+// Desktop-only adjustments
+
+// Keep the menu bar on one line by tightening spacing on narrower windows
+@media (max-width: 1200px) {
+  #tuyaopen-header-nav {
+    gap: 1.1em;
+    margin: 0 1em;
+    overflow-x: auto;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}

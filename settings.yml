@@ -1,0 +1,39 @@
+color_definitions:
+  accent_color:
+    type: color
+    default: "#00B2E3"
+    description: "Main brand accent (links, active nav, highlights)."
+  banner_gradient_start:
+    type: color
+    default: "#7FD9F5"
+    description: "Left side of the welcome banner gradient."
+  banner_gradient_end:
+    type: color
+    default: "#00B2E3"
+    description: "Right side of the welcome banner gradient."
+  active_pill_color:
+    type: color
+    default: "#00B2E3"
+    description: "Background of the active navigation pill (Latest/Top)."
+
+welcome_banner_enabled:
+  type: bool
+  default: true
+  description: "Show the gradient welcome banner above the topic list."
+welcome_banner_title:
+  type: string
+  default: "Welcome to the TuyaOpen Forum!"
+  description: "Heading shown inside the welcome banner."
+welcome_banner_search_enabled:
+  type: bool
+  default: true
+  description: "Show a search box inside the welcome banner."
+
+custom_nav_links:
+  type: string
+  default: '[{"label":"Home","url":"https://developer.tuya.com/","target":"_blank"},{"label":"Docs","url":"https://developer.tuya.com/en/docs/iot","target":"_blank"},{"label":"GitHub","url":"https://github.com/tuya/tuyaopen","target":"_blank"},{"label":"Forum","url":"/","active_paths":["/","/latest","/top","/categories"],"active":true}]'
+  description: "JSON array of menu bar items: label, url, target (_blank optional), active (bool), active_paths (array of path prefixes)."
+hide_header_icons:
+  type: bool
+  default: true
+  description: "Hide the stock search/hamburger icons in the header (like the reference site)."

@@ -1,0 +1,10 @@
+{
+  "name": "TuyaOpen Custom Theme",
+  "component": true,
+  "about_url": "",
+  "license_url": "",
+  "theme_version": "1.0.0",
+  "minimum_discourse_version": "3.2.0",
+  "maximum_discourse_version": null,
+  "assets": {}
+}

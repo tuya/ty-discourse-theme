@@ -1,0 +1,18 @@
+// Mobile-only adjustments
+
+.tuyaopen-welcome-banner {
+  margin: 0.5em 0.5em 0;
+  padding: 1.5em 1em;
+
+  h1 {
+    font-size: 1.4em;
+  }
+
+  .tuyaopen-banner-search {
+    flex-direction: column;
+  }
+}
+
+#tuyaopen-header-nav {
+  display: none; // menu lives in the hamburger/sidebar on mobile
+}
