@@ -1,20 +1,19 @@
-color_definitions:
-  accent_color:
-    type: color
-    default: "#172D72"
-    description: "Main brand accent (links, active nav, highlights) — tuyaopen.ai navy."
-  banner_gradient_start:
-    type: color
-    default: "#10A6FA"
-    description: "Left side of the welcome banner gradient."
-  banner_gradient_end:
-    type: color
-    default: "#172D72"
-    description: "Right side of the welcome banner gradient."
-  active_pill_color:
-    type: color
-    default: "#172D72"
-    description: "Background of the active navigation pill (Latest/Top)."
+accent_color:
+  type: string
+  default: "#172D72"
+  description: "Main brand accent hex (links, active nav, highlights) — tuyaopen.ai navy."
+banner_gradient_start:
+  type: string
+  default: "#10A6FA"
+  description: "Left side of the welcome banner gradient (hex)."
+banner_gradient_end:
+  type: string
+  default: "#172D72"
+  description: "Right side of the welcome banner gradient (hex)."
+active_pill_color:
+  type: string
+  default: "#172D72"
+  description: "Background hex of the active navigation pill (Latest/Top)."
 
 header_logo_url:
   type: string

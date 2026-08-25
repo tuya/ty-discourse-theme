@@ -5,7 +5,13 @@
 // =============================================================================
 
 :root {
-  // Brand accent drives links / highlights (color_definitions in settings.yml)
+  // Brand colors from theme settings (string settings, interpolated here)
+  --accent-color: #{$accent_color};
+  --banner-gradient-start: #{$banner_gradient_start};
+  --banner-gradient-end: #{$banner_gradient_end};
+  --active-pill-color: #{$active_pill_color};
+
+  // Accent drives links / highlights
   --tertiary: var(--accent-color, #172d72);
   --quaternary: var(--accent-color, #172d72);
   --tertiary-low: var(--accent-color, #172d72);
