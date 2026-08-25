@@ -131,7 +131,6 @@ If you don't want the sidebar, leave `default_sidebar` disabled — the theme st
 
 - Solved/unsolved status pills on topics require the [discourse-solved](https://meta.discourse.org/t/solved/145293) plugin (available on Discourse hosting).
 - If you want to **embed a topic list on an external site** (e.g. tuyaopen.com), see [Embed a list of Discourse topics onto an external site](https://meta.discourse.org/t/embed-a-list-of-discourse-topics-onto-an-external-site/293709) — that's a server-side feature (`embed topics`), independent of this theme.
-- Reference screenshots of tuyaopen.ai's navbar are stored in `reference/` for comparison.
 
 ## Local development
 

@@ -726,6 +726,7 @@ body {
     img {
       width: 100%;
       border-radius: 12px;
+      background: #ffffff; // the site asset ships with a transparent canvas
       box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
     }
   }
