@@ -103,7 +103,7 @@ ide_promo_description:
   description: "Short description paragraph."
 ide_promo_images:
   type: string
-  default: '["https://tuyaopen.ai/img/ide/coding-agent.png","https://tuyaopen.ai/img/ide/3-plat-dev.png","https://tuyaopen.ai/img/ide/pin-io-config.svg"]'
+  default: '["https://images.tuyacn.com/fe-static/docs/img/83d924fd-d76b-4692-b844-5c15a4ddb0fe.png","https://tuyaopen.ai/img/ide/coding-agent.png","https://tuyaopen.ai/img/ide/3-plat-dev.png"]'
   description: "JSON array of promo image URLs rotated as a carousel. A single URL (no brackets) also works; leave empty to hide the media column."
 ide_promo_interval:
   type: integer

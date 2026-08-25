@@ -121,7 +121,7 @@ If you don't want the sidebar, leave `default_sidebar` disabled — the theme st
 | `ide_promo_enabled` | `true` | TuyaOpen IDE marketing section under the topic list (Latest page) |
 | `ide_promo_badge` / `ide_promo_title` / `ide_promo_slogan` | localized JSON | Promo badge, title and "Vibe Coding…" slogan |
 | `ide_promo_description` | localized JSON | Promo description paragraph |
-| `ide_promo_images` | 3 tuyaopen.ai IDE assets (JSON array) | Carousel images (empty to hide; a single URL also works) |
+| `ide_promo_images` | IDE screenshot + 2 tuyaopen.ai assets (JSON array) | Carousel images (empty to hide; a single URL also works) |
 | `ide_promo_interval` | `2` | Seconds between carousel slides |
 | `ide_promo_cta_text` / `ide_promo_cta_url` | Install Extension → `/tuyaopen-ide` | Primary promo CTA |
 | `ide_promo_secondary_text` | View on GitHub | Secondary promo CTA (links to `github_repo_url`) |
