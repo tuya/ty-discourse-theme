@@ -194,6 +194,27 @@ body.hide-stock-header-icons .d-header-icons {
   }
 }
 
+// GitHub icon button (right side of the navbar, like tuyaopen.ai)
+.tuyaopen-github-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #1c1e21;
+  padding: 0.35em 0.6em;
+  margin-right: 0.25em;
+  text-decoration: none;
+  transition: color 0.15s ease;
+
+  svg {
+    width: 1.35em;
+    height: 1.35em;
+  }
+
+  &:hover {
+    color: var(--accent-color, #172d72);
+  }
+}
+
 // Keep the login/signup buttons visible and tidy
 .header-buttons .btn {
   border-radius: 10px;

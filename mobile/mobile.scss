@@ -16,3 +16,9 @@
 #tuyaopen-header-nav {
   display: none; // menu lives in the hamburger/sidebar on mobile
 }
+
+// Keep the GitHub icon visible even though the menu bar is hidden
+.tuyaopen-github-link {
+  margin-left: auto;
+  margin-right: 0.25em;
+}

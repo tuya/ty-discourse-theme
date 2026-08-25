@@ -20,6 +20,11 @@ header_logo_url:
   default: "https://tuyaopen.ai/img/home/tuyaopen-logo-simple-dark.png"
   description: "Header logo image (bundled tuyaopen.ai logo by default; swap for any URL or upload)."
 
+github_repo_url:
+  type: string
+  default: "https://github.com/tuya/TuyaOpen"
+  description: "GitHub icon link in the header (main repo). Leave empty to hide the icon."
+
 welcome_banner_enabled:
   type: bool
   default: true

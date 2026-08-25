@@ -2,7 +2,7 @@
 
 A Discourse **theme component** for [forum-tuyaopen.discourse.group](https://forum-tuyaopen.discourse.group/), combining two references:
 
-- **Navbar mirroring [tuyaopen.ai](https://tuyaopen.ai/)** — Products / Docs / Learn / Forums / Ecosystem / About Us with hover dropdowns (mega-menu for Products), the bundled TuyaOpen logo, and the same navy accent (`#172D72`)
+- **Navbar mirroring [tuyaopen.ai](https://tuyaopen.ai/)** — Products / Docs / Learn / Forums / Ecosystem / About Us with hover dropdowns (mega-menu for Products), the bundled TuyaOpen logo, a GitHub icon linking to the main repo, and the same navy accent (`#172D72`)
 - **Forum body modeled after [forum.d-robotics.cc](https://forum.d-robotics.cc/)** — gradient welcome banner with built-in search, clean topic list, square category badges, pill navigation
 
 Everything is configurable from **Admin → Customize → Themes → Settings** — no code edits needed.
@@ -95,6 +95,7 @@ If you don't want the sidebar, leave `default_sidebar` disabled — the theme st
 |---|---|---|
 | `accent_color` | `#172D72` | Brand color for links, active nav, buttons (tuyaopen.ai navy) |
 | `header_logo_url` | tuyaopen.ai logo | Header logo image (bundled by default) |
+| `github_repo_url` | `github.com/tuya/TuyaOpen` | GitHub icon in the header (opens in new tab; leave empty to hide) |
 | `banner_gradient_start` / `banner_gradient_end` | `#10A6FA` / `#172D72` | Welcome banner gradient |
 | `active_pill_color` | `#172D72` | Latest/Top active pill background |
 | `welcome_banner_enabled` | `true` | Toggle the banner |
