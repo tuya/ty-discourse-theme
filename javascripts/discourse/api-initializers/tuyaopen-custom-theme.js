@@ -16,13 +16,58 @@ function parseNavLinks() {
   }
 }
 
+function currentLocale() {
+  return (document.documentElement.getAttribute("lang") || "en")
+    .toLowerCase()
+    .replace("-", "_");
+}
+
+// Picks the best text for the current locale from a plain string or a
+// localized object like {"en": "Products", "zh": "产品"}
+function pickLocalized(value) {
+  if (typeof value === "string") {
+    return value;
+  }
+  if (value && typeof value === "object") {
+    const locale = currentLocale();
+    const base = locale.split("_")[0];
+    const keys = Object.keys(value);
+    const match =
+      value[locale] ||
+      value[base] ||
+      keys.find((k) => k.split("_")[0] === base) ||
+      "en";
+    return value[match] !== undefined ? value[match] : value[keys[0]];
+  }
+  return "";
+}
+
+// Settings holding localized text: plain string, or JSON object per locale
+function localizedSetting(raw) {
+  if (typeof raw !== "string") {
+    return pickLocalized(raw);
+  }
+  const trimmed = raw.trim();
+  if (trimmed.indexOf("{") === 0) {
+    try {
+      return pickLocalized(JSON.parse(trimmed));
+    } catch {
+      return raw;
+    }
+  }
+  return raw;
+}
+
 function resolveUrl(url) {
   if (!url) {
     return "#";
   }
-  // Relative tuyaopen.ai paths stay on the main site
+  // Relative paths go to the tuyaopen.ai site matching the visitor locale
   if (url.indexOf("/") === 0 && url.indexOf("//") !== 0) {
-    return `https://tuyaopen.ai${url}`;
+    const base = currentLocale().indexOf("zh") === 0
+      ? "https://tuyaopen.ai/zh"
+      : "https://tuyaopen.ai";
+    return `${base}${url}`;
   }
   return url;
 }
@@ -61,7 +106,7 @@ function buildLink(link, extraClass) {
 
   const text = document.createElement("span");
   text.className = "tuyaopen-nav-link-text";
-  text.textContent = link.label;
+  text.textContent = pickLocalized(link.label);
   a.appendChild(text);
 
   if (link.items && link.items.length) {
@@ -103,13 +148,13 @@ function renderNav(container, path) {
 
         const label = document.createElement("span");
         label.className = "tuyaopen-dropdown-label";
-        label.textContent = item.label;
+        label.textContent = pickLocalized(item.label);
         a.appendChild(label);
 
         if (item.description) {
           const desc = document.createElement("span");
           desc.className = "tuyaopen-dropdown-desc";
-          desc.textContent = item.description;
+          desc.textContent = pickLocalized(item.description);
           a.appendChild(desc);
         }
         panel.appendChild(a);
@@ -232,7 +277,7 @@ function ensureWelcomeBanner() {
   banner.className = "tuyaopen-welcome-banner";
 
   const title = document.createElement("h1");
-  title.textContent = settings.welcome_banner_title;
+  title.textContent = localizedSetting(settings.welcome_banner_title);
   banner.appendChild(title);
 
   if (settings.welcome_banner_search_enabled) {
@@ -242,13 +287,15 @@ function ensureWelcomeBanner() {
 
     const input = document.createElement("input");
     input.type = "text";
-    input.placeholder = "Search the forum…";
+    input.placeholder = localizedSetting(
+      settings.welcome_banner_search_placeholder
+    );
     input.autocomplete = "off";
 
     const button = document.createElement("button");
     button.type = "submit";
     button.className = "btn btn-primary";
-    button.textContent = "Search";
+    button.textContent = localizedSetting(settings.welcome_banner_search_button);
 
     form.append(input, button);
     form.addEventListener("submit", (event) => {

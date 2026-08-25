@@ -11,6 +11,8 @@ en:
       github_repo_url: "GitHub icon link (main repo)"
       welcome_banner_enabled: "Show welcome banner"
       welcome_banner_title: "Welcome banner title"
+      welcome_banner_search_placeholder: "Banner search placeholder"
+      welcome_banner_search_button: "Banner search button text"
       welcome_banner_search_enabled: "Show search box in banner"
       custom_nav_links: "Custom menu bar links (JSON)"
       hide_header_icons: "Hide stock header search/hamburger icons"

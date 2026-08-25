@@ -1,0 +1,18 @@
+zh_CN:
+  theme_metadata:
+    description: "TuyaOpen 论坛自定义主题 — 仿 tuyaopen.ai 的导航栏（含下拉菜单与 GitHub 图标）、渐变欢迎横幅，以及参考 D-Robotics 论坛的话题列表样式。"
+    settings:
+      accent_color: "品牌主色"
+      banner_gradient_start: "横幅渐变起始色"
+      banner_gradient_end: "横幅渐变结束色"
+      active_pill_color: "激活导航标签背景色"
+      header_logo_url: "页头 Logo 图片地址"
+      header_logo_link: "Logo 点击跳转地址"
+      github_repo_url: "GitHub 图标链接（主仓库）"
+      welcome_banner_enabled: "显示欢迎横幅"
+      welcome_banner_title: "欢迎横幅标题"
+      welcome_banner_search_placeholder: "横幅搜索框占位文案"
+      welcome_banner_search_button: "横幅搜索按钮文案"
+      welcome_banner_search_enabled: "在横幅中显示搜索框"
+      custom_nav_links: "自定义导航栏链接（JSON）"
+      hide_header_icons: "隐藏系统默认搜索/汉堡菜单图标"

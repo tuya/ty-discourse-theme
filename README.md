@@ -3,6 +3,7 @@
 A Discourse **theme component** for [forum-tuyaopen.discourse.group](https://forum-tuyaopen.discourse.group/), combining two references:
 
 - **Navbar mirroring [tuyaopen.ai](https://tuyaopen.ai/)** — Products / Docs / Learn / Forums / Ecosystem / About Us with hover dropdowns (mega-menu for Products), the bundled TuyaOpen logo, a GitHub icon linking to the main repo, and the same navy accent (`#172D72`)
+- **Bilingual out of the box (EN / 简体中文)** — menu labels, dropdown descriptions and banner texts switch automatically with the visitor's forum locale; Chinese visitors' menu links point at `tuyaopen.ai/zh/`
 - **Forum body modeled after [forum.d-robotics.cc](https://forum.d-robotics.cc/)** — gradient welcome banner with built-in search, clean topic list, square category badges, pill navigation
 
 Everything is configurable from **Admin → Customize → Themes → Settings** — no code edits needed.
@@ -40,12 +41,21 @@ Per-item fields:
 
 | Field | Meaning |
 |---|---|
-| `label` | Visible link text |
+| `label` | Visible link text — a string, or localized object `{"en":"Products","zh":"产品"}` |
 | `url` | Absolute URL, or a path relative to tuyaopen.ai |
 | `target` | Optional, `_blank` to open in a new tab |
-| `description` | Optional subtitle inside dropdowns |
+| `description` | Optional subtitle inside dropdowns (also localizable) |
 | `items` | Optional array of dropdown children |
 | `active` / `active_paths` | Force/prefix-match the highlighted state |
+
+## Internationalization (EN / 中文)
+
+The navbar and banner are bilingual via the visitor's forum locale (`<html lang>`):
+
+- **Menu labels & descriptions**: each `label` / `description` in `custom_nav_links` may be a plain string or a JSON object keyed by locale, e.g. `{"en":"Docs","zh":"文档"}`. Unknown locales fall back to `en`.
+- **Banner texts**: `welcome_banner_title`, `welcome_banner_search_placeholder` and `welcome_banner_search_button` accept either plain text or a per-locale JSON object, e.g. `{"en":"Search the forum…","zh":"搜索论坛…"}`.
+- **Localized links**: relative menu URLs resolve to `https://tuyaopen.ai/...` for English visitors and `https://tuyaopen.ai/zh/...` for Chinese visitors.
+- **Admin panel**: setting labels/descriptions are translated in `locales/en.yml` and `locales/zh_CN.yml`.
 
 Example (simplified):
 
