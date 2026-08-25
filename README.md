@@ -43,7 +43,7 @@ Per-item fields:
 | Field | Meaning |
 |---|---|
 | `label` | Visible link text — a string, or localized object `{"en":"Products","zh":"产品"}` |
-| `url` | Absolute URL, or a path relative to tuyaopen.ai |
+| `url` | Absolute URL, a path relative to tuyaopen.ai, or `forum:/...` to link to a page on this forum (in-page navigation, no new tab) |
 | `target` | Optional, `_blank` to open in a new tab |
 | `description` | Optional subtitle inside dropdowns (also localizable) |
 | `items` | Optional array of dropdown children |
@@ -77,8 +77,7 @@ Example (simplified):
   { "label": "Learn", "url": "/learn" },
   {
     "label": "Forums",
-    "url": "https://forum-tuyaopen.discourse.group/",
-    "target": "_blank",
+    "url": "forum:/",
     "active": true,
     "active_paths": ["/", "/latest", "/top", "/categories"]
   }

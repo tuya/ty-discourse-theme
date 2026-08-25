@@ -67,6 +67,12 @@ function resolveUrl(url) {
   if (!url) {
     return "#";
   }
+  // Forum-relative paths ("forum:/latest") stay on this site — Discourse
+  // intercepts same-origin clicks and navigates in place, no new tab
+  if (url.indexOf("forum:") === 0) {
+    const path = url.slice("forum:".length) || "/";
+    return window.location.origin + (path.indexOf("/") === 0 ? path : `/${path}`);
+  }
   // Relative paths go to the tuyaopen.ai site matching the visitor locale
   if (url.indexOf("/") === 0 && url.indexOf("//") !== 0) {
     const base = currentLocale().indexOf("zh") === 0
