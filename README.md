@@ -5,7 +5,7 @@ A Discourse **theme component** for [forum-tuyaopen.discourse.group](https://for
 - **Navbar mirroring [tuyaopen.ai](https://tuyaopen.ai/)** — Products / Docs / Learn / Forums / Ecosystem / About Us with hover dropdowns (mega-menu for Products), the bundled TuyaOpen logo, a GitHub icon linking to the main repo, and the same navy accent (`#172D72`)
 - **Bilingual out of the box (EN / 简体中文)** — menu labels, dropdown descriptions and banner texts switch automatically with the visitor's forum locale; Chinese visitors' menu links point at `tuyaopen.ai/zh/`
 - **Polished forum body** — gradient welcome banner with built-in search, clean topic list, square category badges, pill navigation
-- **Feature-complete page** — hero tagline + Get Started / GitHub CTAs, custom dark footer with link columns, scroll-to-top button, header shadow on scroll, animated nav underlines, hover/pinned topic rows, styled category boxes, branded text selection & empty states
+- **Feature-complete page** — hero tagline + Get Started / GitHub CTAs, TuyaOpen IDE marketing section ("Vibe Coding your next Agentic Hardware") below the topic list, custom dark footer with link columns, scroll-to-top button, header shadow on scroll, animated nav underlines, hover/pinned topic rows, styled category boxes, branded text selection & empty states
 
 Everything is configurable from **Admin → Customize → Themes → Settings** — no code edits needed.
 
@@ -119,6 +119,12 @@ If you don't want the sidebar, leave `default_sidebar` disabled — the theme st
 | `footer_enabled` | `true` | Show the custom dark footer above the Discourse footer |
 | `footer_tagline` | localized JSON | Footer brand tagline |
 | `footer_copyright` | localized JSON (`{year}` token) | Footer copyright line |
+| `ide_promo_enabled` | `true` | TuyaOpen IDE marketing section under the topic list (Latest page) |
+| `ide_promo_badge` / `ide_promo_title` / `ide_promo_slogan` | localized JSON | Promo badge, title and "Vibe Coding…" slogan |
+| `ide_promo_description` | localized JSON | Promo description paragraph |
+| `ide_promo_image` | tuyaopen.ai IDE asset | Promo image (empty to hide) |
+| `ide_promo_cta_text` / `ide_promo_cta_url` | Install Extension → `/tuyaopen-ide` | Primary promo CTA |
+| `ide_promo_secondary_text` | View on GitHub | Secondary promo CTA (links to `github_repo_url`) |
 | `custom_nav_links` | see above | Menu bar items |
 | `hide_header_icons` | `true` | Hides stock search/hamburger icons (like tuyaopen.ai) |
 

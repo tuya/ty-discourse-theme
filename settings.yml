@@ -81,6 +81,43 @@ footer_copyright:
   default: '{"en":"© {year} TuyaOpen Community. All rights reserved.","zh":"© {year} TuyaOpen 社区 · 保留所有权利"}'
   description: "Footer copyright line. {year} is replaced automatically."
 
+ide_promo_enabled:
+  type: bool
+  default: true
+  description: "Show the TuyaOpen IDE marketing section below the topic list on the Latest page."
+ide_promo_badge:
+  type: string
+  default: '{"en":"✨ New · Early Preview","zh":"✨ 新品 · 抢先预览"}'
+  description: "Small badge above the promo title."
+ide_promo_title:
+  type: string
+  default: '{"en":"Build Hardware with TuyaOpen IDE","zh":"用 TuyaOpen IDE 打造硬件产品"}'
+  description: "Promo section title."
+ide_promo_slogan:
+  type: string
+  default: '{"en":"Vibe Coding your next Agentic Hardware","zh":"Vibe Coding 你的下一代智能体硬件"}'
+  description: "Highlighted slogan under the title."
+ide_promo_description:
+  type: string
+  default: '{"en":"The full-stack hardware development tool for the AI era — from project creation to device firmware, cloud agent, and app development. Three surfaces, one workflow.","zh":"面向 AI 时代的全栈硬件开发工具 — 从项目创建到设备固件、云端智能体与应用开发，三位一体，一气呵成。"}'
+  description: "Short description paragraph."
+ide_promo_image:
+  type: string
+  default: "https://tuyaopen.ai/img/ide/coding-agent.png"
+  description: "Promo image URL shown in the media column. Leave empty to hide."
+ide_promo_cta_text:
+  type: string
+  default: '{"en":"Install Extension","zh":"安装扩展"}'
+  description: "Primary CTA button text."
+ide_promo_cta_url:
+  type: string
+  default: "/tuyaopen-ide"
+  description: "Primary CTA destination (relative paths resolve to tuyaopen.ai)."
+ide_promo_secondary_text:
+  type: string
+  default: '{"en":"View on GitHub","zh":"GitHub 仓库"}'
+  description: "Secondary CTA button text (links to github_repo_url)."
+
 custom_nav_links:
   type: string
   default: '[{"label":{"en":"Products","zh":"产品"},"url":"","items":[{"label":"TuyaOpen SDK","description":{"en":"Open-source full-stack AIoT OS","zh":"开源全栈 AIoT 操作系统"},"url":"https://github.com/tuya/TuyaOpen","target":"_blank"},{"label":"TuyaOpen on Arduino","description":{"en":"Arduino library for rapid prototyping","zh":"快速原型开发的 Arduino 库"},"url":"/docs/hardware/tuya-t5/develop-with-Arduino/Quick_start"},{"label":"TuyaOpenClaw","description":{"en":"AI hardware companion agent","zh":"AI 硬件伴侣智能体"},"url":"/duckyclaw"},{"label":"Tuya T5","description":{"en":"Flagship Wi-Fi & BT AI chip, built for TuyaOpen","zh":"为 TuyaOpen 打造的旗舰 Wi-Fi 与蓝牙 AI 芯片"},"url":"/t5-tuyaopen"},{"label":"ESP32","description":{"en":"Full Espressif platform support","zh":"全面支持乐鑫平台"},"url":"/docs/hardware/espressif/overview-esp32"},{"label":"Linux / Raspberry Pi","description":{"en":"Run TuyaOpen on Raspberry Pi & Linux","zh":"在树莓派与 Linux 上运行 TuyaOpen"},"url":"/docs/hardware/Linux/raspberry-pi/Examples/raspberry-pi"},{"label":"TuyaOpen IDE","description":{"en":"AI coding-agent extension for TuyaOpen development","zh":"面向 TuyaOpen 开发的 AI 编程智能体扩展"},"url":"/tuyaopen-ide"},{"label":"TyuTools GUI/CLI","description":{"en":"Universal serial & flashing toolkit","zh":"通用串口与烧录工具"},"url":"/tyutool"},{"label":"WebTool","description":{"en":"Browser-based serial & flashing","zh":"浏览器端串口与烧录"},"url":"/web-serial"},{"label":"License Key","description":{"en":"Per-device Tuya Cloud & AI authorization","zh":"设备级涂鸦云与 AI 授权"},"url":"/pricing"}]},{"label":{"en":"Docs","zh":"文档"},"url":"","items":[{"label":"TuyaOpen SDK","url":"/docs/about-tuyaopen"},{"label":{"en":"Hardware","zh":"硬件"},"url":"/docs/hardware"},{"label":{"en":"Cloud & AI","zh":"云与 AI"},"url":"/docs/cloud/overview"},{"label":"TuyaOpenClaw","url":"/docs/duckyclaw/ducky-quick-start-T5AI"},{"label":"Tyutool","url":"/docs/tyutool"}]},{"label":{"en":"Learn","zh":"学习"},"url":"/learn"},{"label":{"en":"Forums","zh":"论坛"},"url":"https://forum-tuyaopen.discourse.group/","target":"_blank","active":true,"active_paths":["/","/latest","/top","/categories"]},{"label":{"en":"Ecosystem","zh":"生态"},"url":"","items":[{"label":{"en":"Projects","zh":"项目"},"url":"/learn?cat=community"},{"label":{"en":"Dev Boards","zh":"开发板"},"url":"/dev-boards"},{"label":{"en":"Blog","zh":"博客"},"url":"/blog"},{"label":{"en":"Event Registration","zh":"活动报名"},"url":"https://images.tuyacn.com/rms-static/fe11d250-54e9-11f1-8d53-258e63d3fe0e-1779349939189.html?tyName=event-registration.html","target":"_blank"}]},{"label":{"en":"About Us","zh":"关于我们"},"url":"","items":[{"label":{"en":"About","zh":"关于"},"url":"/about"},{"label":{"en":"Mission","zh":"使命"},"url":"/mission"},{"label":{"en":"Partner with Us","zh":"合作洽谈"},"url":"/partners"}]}]'

@@ -22,6 +22,26 @@
   }
 }
 
+// IDE promo stacks to a single column on small screens
+.tuyaopen-ide-promo {
+  margin-top: 1.5em;
+
+  .tuyaopen-ide-promo-inner {
+    grid-template-columns: 1fr;
+    gap: 1.5em;
+    padding: 1.5em 1.25em;
+  }
+
+  h2 {
+    font-size: 1.4em;
+  }
+
+  .tuyaopen-ide-ctas .tuyaopen-cta {
+    flex: 1 1 auto;
+    justify-content: center;
+  }
+}
+
 #tuyaopen-header-nav {
   display: none; // menu lives in the hamburger/sidebar on mobile
 }

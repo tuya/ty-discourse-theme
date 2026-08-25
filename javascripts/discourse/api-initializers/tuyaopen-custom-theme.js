@@ -5,6 +5,7 @@ const BANNER_ID = "tuyaopen-welcome-banner";
 const GITHUB_LINK_ID = "tuyaopen-github-link";
 const FOOTER_ID = "tuyaopen-footer";
 const SCROLL_TOP_ID = "tuyaopen-scroll-top";
+const IDE_PROMO_ID = "tuyaopen-ide-promo";
 
 let scrollListenerRegistered = false;
 
@@ -340,6 +341,132 @@ function ensureWelcomeBanner() {
   listContainer.parentNode.insertBefore(banner, listContainer);
 }
 
+function injectIdePromo() {
+  if (!settings.ide_promo_enabled) {
+    return;
+  }
+  const listContainer = document.querySelector(
+    ".navigation-topics .container.list-container"
+  );
+  if (!listContainer || document.getElementById(IDE_PROMO_ID)) {
+    return;
+  }
+
+  const features = [
+    {
+      title: { en: "IDE Native", zh: "原生集成" },
+      desc: {
+        en: "First-class extensions for VS Code and Cursor — no separate apps, no extra windows.",
+        zh: "VS Code 与 Cursor 一等公民扩展 — 无需独立应用，无需额外窗口。",
+      },
+    },
+    {
+      title: { en: "Pair With Any Coding Agent", zh: "对接任意编程智能体" },
+      desc: {
+        en: "Pair with Claude Code, Codex, or your own agent — hardware context flows straight in. Vibe-code your next device.",
+        zh: "对接 Claude Code、Codex 或你自己的智能体 — 硬件上下文直接流入，Vibe 出你的下一台设备。",
+      },
+    },
+    {
+      title: { en: "Firmware, Cloud & App in One", zh: "固件、云与应用一体化" },
+      desc: {
+        en: "Unify device firmware, cloud AI agents, and app panels in a single workflow — from bring-up to production, fully automated.",
+        zh: "在同一工作流中完成设备固件、云端 AI 智能体与应用面板开发 — 从点亮到量产，全程自动化。",
+      },
+    },
+  ];
+
+  const section = document.createElement("section");
+  section.id = IDE_PROMO_ID;
+  section.className = "tuyaopen-ide-promo";
+
+  const inner = document.createElement("div");
+  inner.className = "tuyaopen-ide-promo-inner";
+
+  // Text column
+  const text = document.createElement("div");
+  text.className = "tuyaopen-ide-promo-text";
+
+  const badge = document.createElement("span");
+  badge.className = "tuyaopen-ide-badge";
+  badge.textContent = localizedSetting(settings.ide_promo_badge);
+  text.appendChild(badge);
+
+  const title = document.createElement("h2");
+  title.textContent = localizedSetting(settings.ide_promo_title);
+  text.appendChild(title);
+
+  const slogan = document.createElement("p");
+  slogan.className = "tuyaopen-ide-slogan";
+  slogan.textContent = localizedSetting(settings.ide_promo_slogan);
+  text.appendChild(slogan);
+
+  const desc = document.createElement("p");
+  desc.className = "tuyaopen-ide-desc";
+  desc.textContent = localizedSetting(settings.ide_promo_description);
+  text.appendChild(desc);
+
+  const featureList = document.createElement("ul");
+  featureList.className = "tuyaopen-ide-features";
+  features.forEach((feature) => {
+    const li = document.createElement("li");
+    const mark = document.createElement("span");
+    mark.className = "tuyaopen-ide-check";
+    mark.setAttribute("aria-hidden", "true");
+    mark.innerHTML =
+      '<svg viewBox="0 0 12 12" width="10" height="10" fill="currentColor"><path d="M4.7 9.3L1.4 6l1.1-1.1 2.2 2.2 4.9-4.9L10.7 3.3 4.7 9.3z"/></svg>';
+    li.appendChild(mark);
+
+    const content = document.createElement("div");
+    const featureTitle = document.createElement("strong");
+    featureTitle.textContent = pickLocalized(feature.title);
+    const featureDesc = document.createElement("span");
+    featureDesc.textContent = pickLocalized(feature.desc);
+    content.append(featureTitle, featureDesc);
+    li.appendChild(content);
+    featureList.appendChild(li);
+  });
+  text.appendChild(featureList);
+
+  const ctas = document.createElement("div");
+  ctas.className = "tuyaopen-ide-ctas";
+
+  const primary = document.createElement("a");
+  primary.className = "tuyaopen-cta tuyaopen-cta-primary";
+  primary.href = resolveUrl(settings.ide_promo_cta_url);
+  primary.textContent = localizedSetting(settings.ide_promo_cta_text);
+  ctas.appendChild(primary);
+
+  if (settings.github_repo_url) {
+    const secondary = document.createElement("a");
+    secondary.className = "tuyaopen-cta tuyaopen-cta-secondary";
+    secondary.href = settings.github_repo_url;
+    secondary.target = "_blank";
+    secondary.rel = "noopener noreferrer";
+    secondary.textContent = localizedSetting(
+      settings.ide_promo_secondary_text
+    );
+    ctas.appendChild(secondary);
+  }
+  text.appendChild(ctas);
+  inner.appendChild(text);
+
+  // Media column
+  if (settings.ide_promo_image) {
+    const media = document.createElement("div");
+    media.className = "tuyaopen-ide-promo-media";
+    const img = document.createElement("img");
+    img.src = settings.ide_promo_image;
+    img.alt = localizedSetting(settings.ide_promo_title);
+    img.loading = "lazy";
+    media.appendChild(img);
+    inner.appendChild(media);
+  }
+
+  section.appendChild(inner);
+  listContainer.insertAdjacentElement("afterend", section);
+}
+
 function injectFooter() {
   if (!settings.footer_enabled) {
     return;
@@ -494,6 +621,7 @@ export default {
         if (settings.welcome_banner_enabled) {
           ensureWelcomeBanner();
         }
+        injectIdePromo();
         injectFooter();
         injectScrollTopButton();
         registerScrollBehaviors();
