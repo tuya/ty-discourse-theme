@@ -20,6 +20,11 @@ header_logo_url:
   default: "https://tuyaopen.ai/img/home/tuyaopen-logo-simple-dark.png"
   description: "Header logo image (bundled tuyaopen.ai logo by default; swap for any URL or upload)."
 
+header_logo_link:
+  type: string
+  default: "https://tuyaopen.ai/"
+  description: "Where the header logo links on click (tuyaopen.ai by default; use / for the forum home)."
+
 github_repo_url:
   type: string
   default: "https://github.com/tuya/TuyaOpen"

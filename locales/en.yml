@@ -7,6 +7,7 @@ en:
       banner_gradient_end: "Banner gradient end"
       active_pill_color: "Active nav pill color"
       header_logo_url: "Header logo image URL"
+      header_logo_link: "Header logo click destination"
       github_repo_url: "GitHub icon link (main repo)"
       welcome_banner_enabled: "Show welcome banner"
       welcome_banner_title: "Welcome banner title"

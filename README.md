@@ -95,6 +95,7 @@ If you don't want the sidebar, leave `default_sidebar` disabled — the theme st
 |---|---|---|
 | `accent_color` | `#172D72` | Brand color for links, active nav, buttons (tuyaopen.ai navy) |
 | `header_logo_url` | tuyaopen.ai logo | Header logo image (bundled by default) |
+| `header_logo_link` | `https://tuyaopen.ai/` | Logo click destination (use `/` to keep the forum home) |
 | `github_repo_url` | `github.com/tuya/TuyaOpen` | GitHub icon in the header (opens in new tab; leave empty to hide) |
 | `banner_gradient_start` / `banner_gradient_end` | `#10A6FA` / `#172D72` | Welcome banner gradient |
 | `active_pill_color` | `#172D72` | Latest/Top active pill background |

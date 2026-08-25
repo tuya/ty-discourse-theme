@@ -160,6 +160,8 @@ function injectHeaderNav() {
         if (!document.getElementById(GITHUB_LINK_ID)) {
           injectGitHubLink();
         }
+        // Re-apply logo/link if Ember re-rendered the title area
+        applyHeaderLogo();
       });
       observer.observe(header, { childList: true, subtree: true });
     }
@@ -171,11 +173,18 @@ function injectHeaderNav() {
 
 function applyHeaderLogo() {
   const logo = document.getElementById("site-logo");
-  if (!logo || !settings.header_logo_url) {
-    return;
-  }
-  if (logo.src !== settings.header_logo_url) {
+  if (logo && settings.header_logo_url && logo.src !== settings.header_logo_url) {
     logo.src = settings.header_logo_url;
+  }
+
+  // Logo click jumps to the main site (tuyaopen.ai) instead of forum home
+  const titleLink = document.querySelector(".d-header .title a");
+  if (
+    titleLink &&
+    settings.header_logo_link &&
+    titleLink.getAttribute("href") !== settings.header_logo_link
+  ) {
+    titleLink.setAttribute("href", settings.header_logo_link);
   }
 }
 
