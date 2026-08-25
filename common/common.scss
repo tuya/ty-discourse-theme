@@ -69,6 +69,11 @@
   background: #ffffff;
   box-shadow: 0 1px 0 var(--primary-low, #e6e6e6);
   height: 3.75em; // 60px, matching tuyaopen.ai (--ifm-navbar-height)
+  transition: box-shadow 0.2s ease;
+
+  &.scrolled {
+    box-shadow: 0 2px 12px rgba(16, 22, 47, 0.08);
+  }
 
   .title a {
     display: flex;
@@ -92,6 +97,7 @@
     Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
 
   .tuyaopen-nav-link {
+    position: relative;
     display: inline-flex;
     align-items: center;
     color: #1c1e21;
@@ -102,13 +108,35 @@
     text-decoration: none;
     transition: color 0.15s ease;
 
+    // Animated underline on hover / active
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0.75em;
+      right: 0.75em;
+      bottom: 0.1em;
+      height: 2px;
+      border-radius: 2px;
+      background: var(--accent-color, #172d72);
+      transform: scaleX(0);
+      transition: transform 0.2s ease;
+    }
+
     &:hover {
       color: var(--accent-color, #172d72);
+
+      &::after {
+        transform: scaleX(1);
+      }
     }
 
     &.active {
       color: var(--accent-color, #172d72);
       font-weight: 600;
+
+      &::after {
+        transform: scaleX(1);
+      }
     }
   }
 
@@ -247,6 +275,56 @@ body.navigation-topics {
     color: #ffffff;
     font-size: 2em;
     font-weight: 700;
+  }
+
+  .tuyaopen-banner-tagline {
+    margin: -0.25em 0 1em;
+    color: rgba(255, 255, 255, 0.92);
+    font-size: 1.1em;
+    max-width: 40em;
+  }
+
+  .tuyaopen-banner-ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75em;
+    margin-bottom: 1.25em;
+  }
+
+  .tuyaopen-cta {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.55em 1.4em;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.98em;
+    text-decoration: none;
+    transition: transform 0.15s ease, box-shadow 0.15s ease,
+      background 0.15s ease;
+
+    &:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+    }
+  }
+
+  .tuyaopen-cta-primary {
+    background: #ffffff;
+    color: var(--banner-gradient-end, #172d72);
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.92);
+    }
+  }
+
+  .tuyaopen-cta-secondary {
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    color: #ffffff;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.22);
+    }
   }
 
   .tuyaopen-banner-search {
@@ -424,4 +502,224 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue",
     Arial, sans-serif;
+}
+
+// -----------------------------------------------------------------------------
+// Topic list enhancements
+// -----------------------------------------------------------------------------
+
+.topic-list {
+  // Hover highlight on rows
+  > tbody > tr.topic-list-item:hover {
+    background: var(--primary-very-low, #fafbfc);
+  }
+
+  // Sticky column headers
+  thead th {
+    position: sticky;
+    top: 3.75em; // below the 60px header
+    background: var(--secondary, #ffffff);
+    z-index: 5;
+    box-shadow: inset 0 -1px 0 var(--primary-very-low, #e6e6e6);
+  }
+
+  // Pinned topics get a subtle accent marker
+  tr.pinned .main-link a.raw-link::before {
+    content: "";
+    display: inline-block;
+    width: 4px;
+    height: 1em;
+    margin-right: 0.5em;
+    border-radius: 2px;
+    background: var(--accent-color, #172d72);
+    vertical-align: -0.12em;
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Category boxes (categories page)
+// -----------------------------------------------------------------------------
+
+.category-list,
+.categories-list {
+  tbody .category {
+    border-radius: 10px;
+    transition: background 0.15s ease;
+
+    &:hover {
+      background: var(--primary-very-low, #fafbfc);
+    }
+
+    .category-name {
+      font-weight: 600;
+    }
+  }
+}
+
+// Category boxes layout (if enabled via category_style site setting)
+.categories-boxes,
+.category-boxes {
+  .category-box {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 1px 4px rgba(16, 22, 47, 0.06);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(16, 22, 47, 0.12);
+    }
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Custom footer
+// -----------------------------------------------------------------------------
+
+.tuyaopen-footer {
+  margin-top: 3em;
+  background: #10162f;
+  color: rgba(255, 255, 255, 0.78);
+
+  .tuyaopen-footer-inner {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 2em;
+    max-width: var(--d-max-width, 1110px);
+    margin: 0 auto;
+    padding: 2.5em 1em 1.5em;
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+      gap: 1.5em;
+    }
+  }
+
+  .tuyaopen-footer-wordmark {
+    color: #ffffff;
+    font-size: 1.4em;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    margin-bottom: 0.5em;
+  }
+
+  .tuyaopen-footer-tagline {
+    margin: 0 0 1em;
+    font-size: 0.95em;
+    max-width: 26em;
+    line-height: 1.5;
+  }
+
+  .tuyaopen-footer-github {
+    display: inline-flex;
+    color: rgba(255, 255, 255, 0.85);
+    transition: color 0.15s ease;
+
+    svg {
+      width: 1.4em;
+      height: 1.4em;
+    }
+
+    &:hover {
+      color: #ffffff;
+    }
+  }
+
+  .tuyaopen-footer-col {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45em;
+
+    h3 {
+      color: #ffffff;
+      font-size: 0.85em;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin: 0 0 0.4em;
+    }
+
+    a {
+      color: rgba(255, 255, 255, 0.72);
+      font-size: 0.95em;
+      text-decoration: none;
+      transition: color 0.15s ease;
+
+      &:hover {
+        color: #ffffff;
+      }
+    }
+  }
+
+  .tuyaopen-footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    padding: 1.1em;
+    text-align: center;
+    font-size: 0.85em;
+    color: rgba(255, 255, 255, 0.55);
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Scroll-to-top button
+// -----------------------------------------------------------------------------
+
+.tuyaopen-scroll-top {
+  position: fixed;
+  right: 1.5em;
+  bottom: 1.5em;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.6em;
+  height: 2.6em;
+  border: none;
+  border-radius: 50%;
+  background: var(--accent-color, #172d72);
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(16, 22, 47, 0.25);
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+
+  &.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  &:hover {
+    background: var(--accent-hover, #0f1f52);
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Micro-polish
+// -----------------------------------------------------------------------------
+
+::selection {
+  background: var(--accent-low, #e8ebf4);
+}
+
+.btn {
+  transition: background 0.15s ease, color 0.15s ease,
+    transform 0.15s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+}
+
+// Empty states (no topics yet, etc.)
+.empty-state {
+  .empty-state-title {
+    color: var(--primary-high, #1c1e21);
+  }
+
+  .d-icon {
+    color: var(--accent-color, #172d72);
+  }
 }

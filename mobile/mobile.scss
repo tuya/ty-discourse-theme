@@ -11,6 +11,15 @@
   .tuyaopen-banner-search {
     flex-direction: column;
   }
+
+  .tuyaopen-banner-ctas {
+    margin-bottom: 1em;
+  }
+
+  .tuyaopen-cta {
+    flex: 1 1 auto;
+    justify-content: center;
+  }
 }
 
 #tuyaopen-header-nav {
@@ -21,4 +30,14 @@
 .tuyaopen-github-link {
   margin-left: auto;
   margin-right: 0.25em;
+}
+
+// Footer spacing on small screens
+.tuyaopen-footer .tuyaopen-footer-inner {
+  padding: 2em 1em 1em;
+}
+
+.tuyaopen-scroll-top {
+  right: 1em;
+  bottom: 1em;
 }

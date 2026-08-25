@@ -3,6 +3,10 @@ import { withPluginApi } from "discourse/lib/plugin-api";
 const NAV_CONTAINER_ID = "tuyaopen-header-nav";
 const BANNER_ID = "tuyaopen-welcome-banner";
 const GITHUB_LINK_ID = "tuyaopen-github-link";
+const FOOTER_ID = "tuyaopen-footer";
+const SCROLL_TOP_ID = "tuyaopen-scroll-top";
+
+let scrollListenerRegistered = false;
 
 const GITHUB_MARK_SVG =
   '<svg viewBox="0 0 16 16" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>';
@@ -280,6 +284,33 @@ function ensureWelcomeBanner() {
   title.textContent = localizedSetting(settings.welcome_banner_title);
   banner.appendChild(title);
 
+  if (settings.hero_tagline) {
+    const tagline = document.createElement("p");
+    tagline.className = "tuyaopen-banner-tagline";
+    tagline.textContent = localizedSetting(settings.hero_tagline);
+    banner.appendChild(tagline);
+  }
+
+  const ctas = document.createElement("div");
+  ctas.className = "tuyaopen-banner-ctas";
+
+  const primaryCta = document.createElement("a");
+  primaryCta.className = "tuyaopen-cta tuyaopen-cta-primary";
+  primaryCta.href = resolveUrl(settings.hero_cta_url);
+  primaryCta.textContent = localizedSetting(settings.hero_cta_text);
+  ctas.appendChild(primaryCta);
+
+  if (settings.github_repo_url) {
+    const secondaryCta = document.createElement("a");
+    secondaryCta.className = "tuyaopen-cta tuyaopen-cta-secondary";
+    secondaryCta.href = settings.github_repo_url;
+    secondaryCta.target = "_blank";
+    secondaryCta.rel = "noopener noreferrer";
+    secondaryCta.textContent = localizedSetting(settings.hero_cta_secondary_text);
+    ctas.appendChild(secondaryCta);
+  }
+  banner.appendChild(ctas);
+
   if (settings.welcome_banner_search_enabled) {
     const form = document.createElement("form");
     form.className = "tuyaopen-banner-search";
@@ -309,6 +340,144 @@ function ensureWelcomeBanner() {
   listContainer.parentNode.insertBefore(banner, listContainer);
 }
 
+function injectFooter() {
+  if (!settings.footer_enabled) {
+    return;
+  }
+  const anchor = document.querySelector("#d-footer");
+  if (!anchor || document.getElementById(FOOTER_ID)) {
+    return;
+  }
+
+  const exploreTitle = pickLocalized({ en: "Explore", zh: "探索" });
+  const resourcesTitle = pickLocalized({ en: "Resources", zh: "资源" });
+  const resources = [
+    { label: { en: "Documentation", zh: "开发文档" }, url: "/docs" },
+    { label: { en: "GitHub", zh: "GitHub" }, url: settings.github_repo_url, target: "_blank" },
+    { label: { en: "Community", zh: "社区论坛" }, url: "/" },
+  ].filter((item) => item.url);
+
+  const footer = document.createElement("div");
+  footer.id = FOOTER_ID;
+  footer.className = "tuyaopen-footer";
+
+  const inner = document.createElement("div");
+  inner.className = "tuyaopen-footer-inner";
+
+  // Brand column
+  const brand = document.createElement("div");
+  brand.className = "tuyaopen-footer-brand";
+
+  const wordmark = document.createElement("div");
+  wordmark.className = "tuyaopen-footer-wordmark";
+  wordmark.textContent = "TuyaOpen";
+  brand.appendChild(wordmark);
+
+  if (settings.footer_tagline) {
+    const tagline = document.createElement("p");
+    tagline.className = "tuyaopen-footer-tagline";
+    tagline.textContent = localizedSetting(settings.footer_tagline);
+    brand.appendChild(tagline);
+  }
+
+  if (settings.github_repo_url) {
+    const gh = document.createElement("a");
+    gh.className = "tuyaopen-footer-github";
+    gh.href = settings.github_repo_url;
+    gh.target = "_blank";
+    gh.rel = "noopener noreferrer";
+    gh.setAttribute("aria-label", "GitHub");
+    gh.innerHTML = GITHUB_MARK_SVG;
+    brand.appendChild(gh);
+  }
+  inner.appendChild(brand);
+
+  // Explore column — built from the top-level navbar items
+  const explore = document.createElement("div");
+  explore.className = "tuyaopen-footer-col";
+  const exploreHeading = document.createElement("h3");
+  exploreHeading.textContent = exploreTitle;
+  explore.appendChild(exploreHeading);
+  parseNavLinks()
+    .filter((link) => link.url || (link.items && link.items.length))
+    .forEach((link) => {
+      const a = document.createElement("a");
+      a.href = link.url ? resolveUrl(link.url) : resolveUrl(link.items[0].url);
+      a.textContent = pickLocalized(link.label);
+      if (link.target) {
+        a.target = link.target;
+        a.rel = "noopener noreferrer";
+      }
+      explore.appendChild(a);
+    });
+  inner.appendChild(explore);
+
+  // Resources column
+  const res = document.createElement("div");
+  res.className = "tuyaopen-footer-col";
+  const resHeading = document.createElement("h3");
+  resHeading.textContent = resourcesTitle;
+  res.appendChild(resHeading);
+  resources.forEach((item) => {
+    const a = document.createElement("a");
+    a.href = resolveUrl(item.url);
+    a.textContent = pickLocalized(item.label);
+    if (item.target) {
+      a.target = item.target;
+      a.rel = "noopener noreferrer";
+    }
+    res.appendChild(a);
+  });
+  inner.appendChild(res);
+
+  footer.appendChild(inner);
+
+  const bottom = document.createElement("div");
+  bottom.className = "tuyaopen-footer-bottom";
+  bottom.textContent = localizedSetting(settings.footer_copyright).replace(
+    "{year}",
+    String(new Date().getFullYear())
+  );
+  footer.appendChild(bottom);
+
+  anchor.parentNode.insertBefore(footer, anchor);
+}
+
+function injectScrollTopButton() {
+  if (document.getElementById(SCROLL_TOP_ID)) {
+    return;
+  }
+  const button = document.createElement("button");
+  button.id = SCROLL_TOP_ID;
+  button.className = "tuyaopen-scroll-top";
+  button.setAttribute("aria-label", "Back to top");
+  button.innerHTML =
+    '<svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M8 2.5l5.5 5.5-1.06 1.06L8.5 5.12V13.5h-1V5.12L3.56 9.06 2.5 8 8 2.5z"/></svg>';
+  button.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+  document.body.appendChild(button);
+}
+
+function registerScrollBehaviors() {
+  if (scrollListenerRegistered) {
+    return;
+  }
+  scrollListenerRegistered = true;
+  const onScroll = () => {
+    const header = document.querySelector(".d-header");
+    if (header) {
+      header.classList.toggle("scrolled", window.scrollY > 8);
+    }
+    const scrollTop = document.getElementById(SCROLL_TOP_ID);
+    if (scrollTop) {
+      scrollTop.classList.toggle("visible", window.scrollY > 600);
+    }
+  };
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+}
+
 export default {
   name: "tuyaopen-custom-theme",
   initialize() {
@@ -325,6 +494,9 @@ export default {
         if (settings.welcome_banner_enabled) {
           ensureWelcomeBanner();
         }
+        injectFooter();
+        injectScrollTopButton();
+        registerScrollBehaviors();
       };
 
       api.onPageChange(refresh);
