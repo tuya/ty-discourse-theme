@@ -1,6 +1,6 @@
 en:
   theme_metadata:
-    description: "Custom theme for the TuyaOpen forum — clean white header with a custom menu bar, gradient welcome banner and D-Robotics-inspired topic list styling."
+    description: "Custom theme for the TuyaOpen forum — clean white header with a custom menu bar, gradient welcome banner and refined topic list styling."
     settings:
       accent_color: "Brand accent color"
       banner_gradient_start: "Banner gradient start"

@@ -1,6 +1,6 @@
 zh_CN:
   theme_metadata:
-    description: "TuyaOpen 论坛自定义主题 — 仿 tuyaopen.ai 的导航栏（含下拉菜单与 GitHub 图标）、渐变欢迎横幅，以及参考 D-Robotics 论坛的话题列表样式。"
+    description: "TuyaOpen 论坛自定义主题 — 仿 tuyaopen.ai 的导航栏（含下拉菜单与 GitHub 图标）、渐变欢迎横幅，以及简洁精致的话题列表样式。"
     settings:
       accent_color: "品牌主色"
       banner_gradient_start: "横幅渐变起始色"

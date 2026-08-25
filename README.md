@@ -4,7 +4,7 @@ A Discourse **theme component** for [forum-tuyaopen.discourse.group](https://for
 
 - **Navbar mirroring [tuyaopen.ai](https://tuyaopen.ai/)** — Products / Docs / Learn / Forums / Ecosystem / About Us with hover dropdowns (mega-menu for Products), the bundled TuyaOpen logo, a GitHub icon linking to the main repo, and the same navy accent (`#172D72`)
 - **Bilingual out of the box (EN / 简体中文)** — menu labels, dropdown descriptions and banner texts switch automatically with the visitor's forum locale; Chinese visitors' menu links point at `tuyaopen.ai/zh/`
-- **Forum body modeled after [forum.d-robotics.cc](https://forum.d-robotics.cc/)** — gradient welcome banner with built-in search, clean topic list, square category badges, pill navigation
+- **Polished forum body** — gradient welcome banner with built-in search, clean topic list, square category badges, pill navigation
 
 Everything is configurable from **Admin → Customize → Themes → Settings** — no code edits needed.
 
@@ -84,9 +84,9 @@ Example (simplified):
 ]
 ```
 
-## Match the reference layout (recommended site settings)
+## Recommended site settings
 
-The D-Robotics forum combines the theme component with native Discourse settings. On **Admin → Settings**:
+The theme pairs best with a few native Discourse settings. On **Admin → Settings**:
 
 | Setting | Value | Why |
 |---|---|---|
@@ -95,7 +95,7 @@ The D-Robotics forum combines the theme component with native Discourse settings
 | `topic_list_previews_enabled` | `enabled` | Topic excerpts under titles |
 | `header_dropdown_category_count` | `10` | Category menu coverage |
 | `suggested_topics` | as desired | Related topics under each topic |
-| `login_required` | off | The reference forum shows content to anonymous users |
+| `login_required` | off | Show content to anonymous users |
 
 If you don't want the sidebar, leave `default_sidebar` disabled — the theme still works fine without it.
 
@@ -119,7 +119,7 @@ If you don't want the sidebar, leave `default_sidebar` disabled — the theme st
 
 - Solved/unsolved status pills on topics require the [discourse-solved](https://meta.discourse.org/t/solved/145293) plugin (available on Discourse hosting).
 - If you want to **embed a topic list on an external site** (e.g. tuyaopen.com), see [Embed a list of Discourse topics onto an external site](https://meta.discourse.org/t/embed-a-list-of-discourse-topics-onto-an-external-site/293709) — that's a server-side feature (`embed topics`), independent of this theme.
-- Reference screenshots of tuyaopen.ai's navbar and forum.d-robotics.cc are stored in `reference/` for comparison.
+- Reference screenshots of tuyaopen.ai's navbar are stored in `reference/` for comparison.
 
 ## Local development
 
