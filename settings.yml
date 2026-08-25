@@ -48,8 +48,8 @@ welcome_banner_search_button:
   description: "Banner search button text. Plain text or per-locale JSON object."
 welcome_banner_search_enabled:
   type: bool
-  default: true
-  description: "Show a search box inside the welcome banner."
+  default: false
+  description: "Show a search box inside the welcome banner (off by default — Discourse already greets users and offers search)."
 
 hero_tagline:
   type: string

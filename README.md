@@ -112,7 +112,7 @@ If you don't want the sidebar, leave `default_sidebar` disabled — the theme st
 | `active_pill_color` | `#172D72` | Latest/Top active pill background |
 | `welcome_banner_enabled` | `true` | Toggle the banner |
 | `welcome_banner_title` | `Welcome to the TuyaOpen Forum!` | Banner heading |
-| `welcome_banner_search_enabled` | `true` | Search box inside the banner |
+| `welcome_banner_search_enabled` | `false` | Search box inside the banner (off — avoids redundancy with Discourse's greeting/search) |
 | `hero_tagline` | localized JSON | Tagline under the banner title (empty to hide) |
 | `hero_cta_text` / `hero_cta_url` | Get Started → docs | Primary CTA button in the banner |
 | `hero_cta_secondary_text` | View on GitHub | Secondary CTA (links to `github_repo_url`) |
