@@ -36,6 +36,35 @@
 // Header + custom menu bar
 // -----------------------------------------------------------------------------
 
+// Theme preview banner — only visible while previewing from the admin panel,
+// restyled to match the brand instead of the default washed-out blue
+#preview-banner {
+  background: var(--accent-color, #172d72);
+  color: #ffffff;
+  font-size: 0.9em;
+  line-height: 1.4;
+
+  a {
+    color: #ffffff;
+    font-weight: 600;
+    text-decoration: underline;
+  }
+
+  .btn {
+    margin-left: 0.5em;
+    background: rgba(255, 255, 255, 0.16);
+    color: #ffffff;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.28);
+    }
+
+    .d-icon {
+      color: #ffffff;
+    }
+  }
+}
+
 .d-header {
   background: #ffffff;
   box-shadow: 0 1px 0 var(--primary-low, #e6e6e6);
